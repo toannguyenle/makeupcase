@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: MyString
+  brand: MyString
+  name: MyString
+  sku: MyString
+  price: 1.5
+  like_or_not: MyString
+  review: MyString
+  date_first_use: MyString
+  volume: MyString
+  expiration_date: MyString
+  category: MyString
+  user_id: MyString
+
+two:
+  product_id: MyString
+  brand: MyString
+  name: MyString
+  sku: MyString
+  price: 1.5
+  like_or_not: MyString
+  review: MyString
+  date_first_use: MyString
+  volume: MyString
+  expiration_date: MyString
+  category: MyString
+  user_id: MyString

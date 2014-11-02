@@ -1,0 +1,18 @@
+<div class="row">
+  <div id="signin" class="col-sm-6 col-sm-offset-3">
+    <%= bootstrap_form_for(@product) do |f| %>
+      <%= f.text_field :brand%>
+      <%= f.text_field :name%>
+      <%= f.text_field :volume%>
+      <%= f.text_field :sku%>
+      <%= f.text_field :price%>
+      <%= f.text_area :review%>
+      <%= f.check_box :like_or_not, label: 'Like?'%>
+      <%= f.date_field :opened_date%>
+      <%= f.date_field :expiration_date%>
+      <%= f.text_field :category%>
+
+      <%= f.submit 'Create my account'%>
+    <% end %>
+  </div>
+</div>
