@@ -6,7 +6,7 @@
       <%= f.password_field :password, help: 'Must be at least 6 characters long' %>
       <%= f.password_field :password_confirmation %>
       <%= f.check_box :agree_marketing, label: 'Let me know about sales relating to products in my account. Learn more.', checked: true %>
-      <%= f.submit 'Create my account'%>
+      <%= f.submit 'Create my account', :class => 'btn btn-primary btn-lg btn-block'%>
       <div>
         <p><small>By signing up, you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>, including <a href="#">Cookie Use</a>. Your personal information won't be shared under any circumstances. Your products combination will be shared with brands to better your buying experiences.</small></p>
       </div>

@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   
-  # make sure only admin can show all users
-  before_action :make_sure_admin, only: [:index]
   def index
     @users = User.all
   end
@@ -21,8 +19,8 @@ class UsersController < ApplicationController
     user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation, :agree_marketing))
     if user.save
       # the moment you sign up it logs  you in
-      session[:user_id] = user.id
-      redirect_to makeupcases_path
+      session[:user_id] = user.id.to_s
+      redirect_to new_makeupcase_path
     else
       redirect_to new_user_path
     end
@@ -33,13 +31,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.new(params.require(:user).permit(:email, :password, :password_confirmation))
-    if user.save
-      # the moment you sign up it logs  you in
-      session[:user_id] = user.id
-      redirect_to users_path
+    @user = User.find(params[:id])
+    if @user.update_attributes(params.require(:user).permit(:name, :email, :password, :password_confirmation, :agree_marketing))
+      redirect_to user_path(@user)
     else
-      redirect_to new_user_path
+      redirect_to edit_user_path(@user)
     end
   end
 
@@ -55,12 +51,6 @@ class UsersController < ApplicationController
   end
   
   private
-    def make_sure_admin
-      # if not log in and not user
-      if !current_user || !current_user.is_admin
-        redirect_to root_path
-      end
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])

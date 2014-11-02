@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
-   # make sure only admin can show all users
-  before_action :make_sure_logged_in, only: [:create, :edit, :update, :new]
+  before_action :make_sure_logged_in, only: [:create, :edit, :update, :new, :destroy]
   def index
     @products = Product.all
   end
@@ -15,9 +13,8 @@ class ProductsController < ApplicationController
   end  
 
   def create
-    product = Product.new(params.require(:product).permit(:brand, :name, :volume, :sku, :price, :review, :like_or_not, :date_first_user, :expiration_date, :category))
-    if product.save
-      # the moment you sign up it logs  you in
+    @product = Product.new(params.require(:product).permit(:brand, :name, :size, :upc, :ean13, :upc_e, :category, :avg_price, :manufacturer, :ingredients, :short_description, :full_description, :image_urls, :date_first_use, :expiration_date, :like_or_not, :review, :user_id))
+    if @product.save
       redirect_to makeupcases_path
     else
       redirect_to new_product_path
@@ -29,23 +26,18 @@ class ProductsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @product.update(user_params)
-        format.html { redirect_to @product, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
+    @product = Product.find(params[:id])
+      if @product.update_attributes(params.require(:product).permit(:brand, :name, :size, :upc, :ean13, :upc_e, :category, :avg_price, :manufacturer, :ingredients, :short_description, :full_description, :image_urls, :date_first_use, :expiration_date, :like_or_not, :review, :user_id))
+        redirect_to products_path
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        render 'edit'
       end
-    end
   end
 
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_path
   end
   
   private

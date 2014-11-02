@@ -1,22 +1,30 @@
-<div class="main">
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <h1>My profile</h1>
+  </div>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
-<p>
-  <strong>Password confirmation:</strong>
-  <%= @user.password_confirmation %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-
+<div class="row">
+  <div id="signin" class="col-sm-4 col-sm-offset-4">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <tr>
+          <td>Name</td>
+          <th><%= @user.name%></th>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><%= @user.email%></td>
+        </tr>
+        <tr>
+          <td>Want to get our emails?</td>
+          <td><%= @user.agree_marketing%></td>
+        </tr>
+        <tr>
+          <td><%= link_to 'Edit my profile', edit_user_path(@user)%></td>
+          <td><%= link_to 'Delete my account', @user, method: :delete, data: {confirm: 'Are you sure? All your content will be lost and you will have to start all over again.'} %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

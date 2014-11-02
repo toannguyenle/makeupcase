@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <h1>Product detail</h1>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th>Brand</th>
+      <th>Name</th>
+      <th>Size</th>
+      <th>UPC</th>
+      <th>EAN 13</th>
+      <th>UPC e</th>
+      <th>Category</th>
+      <th>Ave Price</th>
+      <th>Manufacturer</th>
+      <th>Ingredients</th>
+      <th>Short Description</th>
+      <th>Full Description</th>
+      <th>Image URLS</th>
+      <th>Opened Date</th>
+      <th>Expiration Date</th>
+      <th>Like or Not</th>
+      <th>Review</th>
+      <th>Belongs to</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+        <tr>
+          <td><%= @product.brand %></td>
+          <td><%= @product.name %></td>
+          <td><%= @product.size %></td>
+          <td><%= @product.upc %></td>
+          <td><%= @product.ean13 %></td>
+          <td><%= @product.upc_e %></td>
+          <td><%= @product.category %></td>
+          <td><%= @product.avg_price %></td>
+          <td><%= @product.manufacturer %></td>
+          <td><%= @product.ingredients %></td>
+          <td><%= @product.short_description %></td>
+          <td><%= @product.full_description %></td>
+          <td><%= @product.image_urls %></td>
+          <td><%= @product.date_first_use %></td>
+          <td><%= @product.date_expired %></td>
+          <td><%= @product.like_or_not %></td>
+          <td><%= @product.review %></td>
+          <td><%= @product.user.name if @product.user %></td>
+          <td><%= link_to 'Edit', edit_product_path(@product) %></td>
+          <td><%= link_to 'X', @product, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+  </table>
+</div>

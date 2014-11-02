@@ -7,6 +7,6 @@ class User
   field :agree_marketing, type: Mongoid::Boolean
   field :password_digest, type: String
   field :member_since, type: String
-  field :makeupcase_id, type: String
-  field :facebookAPI, type: String
+
+  has_many :products, dependent: :destroy
 end

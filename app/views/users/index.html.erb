@@ -1,1 +1,38 @@
-<div>USER INDEX</div>
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+    <h1>Users List</h1>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Agree Marketing</th>
+      <th>Member Since</th>
+      <th>Makeup Case Contents</th>
+      <th>More info</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+      <% @users.each do |u| %>
+        <tr>
+          <td><%= u.name %></td>
+          <td><%= u.email %></td>
+          <td><%= u.agree_marketing %></td>
+          <td><%= u.member_since %></td>
+          <td>
+            <% if u.products %>
+              <% u.products.each do |p| %>
+              <%= p.name %> - <%= p. brand%> - <%= p.like_or_not %> - <%= p.date_first_use %><br />
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= link_to '+', u %></td>
+          <td><%= link_to 'Edit', edit_user_path(u) %></td>
+          <td><%= link_to 'X', u, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+      <% end %>
+  </table>
+</div>
+

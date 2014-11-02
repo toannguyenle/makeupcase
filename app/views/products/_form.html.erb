@@ -3,16 +3,24 @@
     <%= bootstrap_form_for(@product) do |f| %>
       <%= f.text_field :brand%>
       <%= f.text_field :name%>
-      <%= f.text_field :volume%>
-      <%= f.text_field :sku%>
-      <%= f.text_field :price%>
-      <%= f.text_area :review%>
-      <%= f.check_box :like_or_not, label: 'Like?'%>
-      <%= f.date_field :opened_date%>
-      <%= f.date_field :expiration_date%>
+      <%= f.text_field :size%>
+      <%= f.text_field :upc%>
+      <%= f.text_field :ean13%>
+      <%= f.text_field :upc_e%>
       <%= f.text_field :category%>
+      <%= f.text_field :avg_price%>
+      <%= f.text_field :manufacturer%>
+      <%= f.text_field :ingredients%>
+      <%= f.text_field :short_description%>
+      <%= f.text_field :full_description%>
+      <%= f.text_field :image_urls%>
+      <%= f.date_field :date_first_use%>
+      <%= f.date_field :date_expired%>
+      <%= f.check_box :like_or_not, label: 'Like?'%>
+      <%= f.text_area :review%>
 
-      <%= f.submit 'Create my account'%>
+      
+      <%= f.submit 'Create my account', :class => 'btn btn-primary btn-lg btn-block'%>
     <% end %>
   </div>
 </div>
