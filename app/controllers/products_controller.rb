@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :make_sure_logged_in, only: [:create, :edit, :update, :new, :destroy]
   def index
-    @products = Product.all
+    @products = Product.where('user_id' => current_user.id.to_s)
   end
 
   def show
@@ -14,8 +14,9 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(params.require(:product).permit(:brand, :name, :size, :upc, :ean13, :upc_e, :category, :avg_price, :manufacturer, :ingredients, :short_description, :full_description, :image_urls, :date_first_use, :expiration_date, :like_or_not, :review, :user_id))
+    @product.user_id = current_user.id.to_s
     if @product.save
-      redirect_to makeupcases_path
+      redirect_to products_path
     else
       redirect_to new_product_path
     end

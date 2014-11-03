@@ -47,6 +47,7 @@ class UsersController < ApplicationController
     end
     # perform destroy
     u.destroy
+    reset_session
     redirect_to new_user_path
   end
   

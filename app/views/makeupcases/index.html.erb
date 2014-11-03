@@ -5,8 +5,8 @@
 </div>
 <div class="row">
   <div id="signin" class="col-sm-6 col-sm-offset-3">
-    <% raise @current_user.product.inspect %>
-    <% if @current_user.product %>
+    <% raise current_user.inspect %>
+    <% if @user.products %>
       <div class="table-responsive">
         <table class="table table-hover">
           <tr>
@@ -25,22 +25,24 @@
             <th>Edit</th>
             <th>Delete</th>
           </tr>
-              <tr>
-                <td><%= @current_user.product.brand %></td>
-                <td><%= @current_user.product.name %></td>
-                <td><%= @current_user.product.upc_e %></td>
-                <td><%= @current_user.product.category %></td>
-                <td><%= @current_user.product.avg_price %></td>
-                <td><%= @current_user.product.manufacturer %></td>
-                <td><%= @current_user.product.ingredients %></td>
-                <td><%= @current_user.product.short_description %></td>
-                <td><%= @current_user.product.date_first_use %></td>
-                <td><%= @current_user.product.date_expired %></td>
-                <td><%= @current_user.product.like_or_not %></td>
-                <td><%= @current_user.product.review %></td>
-                <td><%= link_to 'Edit', edit_product_path(@current_user.product) %></td>
-                <td><%= link_to 'X', @current_user.product, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-              </tr>
+              <% @user.products do |p| %>
+                <tr>
+                  <td><%= p.brand %></td>
+                  <td><%= p.name %></td>
+                  <td><%= p.upc_e %></td>
+                  <td><%= p.category %></td>
+                  <td><%= p.avg_price %></td>
+                  <td><%= p.manufacturer %></td>
+                  <td><%= p.ingredients %></td>
+                  <td><%= p.short_description %></td>
+                  <td><%= p.date_first_use %></td>
+                  <td><%= p.date_expired %></td>
+                  <td><%= p.like_or_not %></td>
+                  <td><%= p.review %></td>
+                  <td><%= link_to 'Edit', edit_product_path(p) %></td>
+                  <td><%= link_to 'X', p, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+                </tr>
+              <% end %>
         </table>
       </div>
     <% else %>

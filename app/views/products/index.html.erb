@@ -1,58 +1,57 @@
 <div class="row">
   <div class="col-sm-4 col-sm-offset-4">
-    <h1>Products List</h1>
+    <h1>Your make up case</h1>
   </div>
 </div>
-<div class="table-responsive">
-  <table class="table table-hover">
-    <tr>
-      <th>Brand</th>
-      <th>Name</th>
-      <th>Size</th>
-      <th>UPC</th>
-      <th>EAN 13</th>
-      <th>UPC e</th>
-      <th>Category</th>
-      <th>Ave Price</th>
-      <th>Manufacturer</th>
-      <th>Ingredients</th>
-      <th>Short Description</th>
-      <th>Full Description</th>
-      <th>Image URLS</th>
-      <th>Opened Date</th>
-      <th>Expiration Date</th>
-      <th>Like or Not</th>
-      <th>Review</th>
-      <th>Belongs to</th>
-      <th>More info</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-      <% @products.each do |p| %>
-        <tr>
-          <td><%= p.brand %></td>
-          <td><%= p.name %></td>
-          <td><%= p.size %></td>
-          <td><%= p.upc %></td>
-          <td><%= p.ean13 %></td>
-          <td><%= p.upc_e %></td>
-          <td><%= p.category %></td>
-          <td><%= p.avg_price %></td>
-          <td><%= p.manufacturer %></td>
-          <td><%= p.ingredients %></td>
-          <td><%= p.short_description %></td>
-          <td><%= p.full_description %></td>
-          <td><%= p.image_urls %></td>
-          <td><%= p.date_first_use %></td>
-          <td><%= p.date_expired %></td>
-          <td><%= p.like_or_not %></td>
-          <td><%= p.review %></td>
-          <td><%= p.user.name if p.user %></td>
-          <td><%= link_to '+', p %></td>
-          <td><%= link_to 'Edit', edit_product_path(p) %></td>
-          <td><%= link_to 'X', p, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-        </tr>
-      <% end %>
-  </table>
+<div class="row">
+  <div id="signin" class="col-sm-10 col-sm-offset-1">
+    <% if @products %>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <tr>
+            <th>Brand</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Category</th>
+            <th>Ave Price</th>
+            <th>Manufacturer</th>
+            <th>Ingredients</th>
+            <th>Short Description</th>
+            <th>Opened Date</th>
+            <th>Expiration Date</th>
+            <th>Like or Not</th>
+            <th>Review</th>
+            <th>More Info</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+              <% @products.each do |p| %>
+                <tr>
+                  <td><%= p.brand %></td>
+                  <td><%= p.name %></td>
+                  <td><%= p.upc_e %></td>
+                  <td><%= p.category %></td>
+                  <td><%= p.avg_price %></td>
+                  <td><%= p.manufacturer %></td>
+                  <td><%= p.ingredients %></td>
+                  <td><%= p.short_description %></td>
+                  <td><%= p.date_first_use %></td>
+                  <td><%= p.date_expired %></td>
+                  <td><%= p.like_or_not %></td>
+                  <td><%= p.review %></td>
+                  <td><%= link_to '+', product_path(p) %></td>
+                  <td><%= link_to 'Edit', edit_product_path(p) %></td>
+                  <td><%= link_to 'X', p, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+                </tr>
+              <% end %>
+        </table>
+      </div>
+    <% else %>
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+          <h3>No product available. Add more here.</h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
