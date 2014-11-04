@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
   # PAGE ROUTES
   get '/' => 'home#index', as: :root
-  
+  # ROUTE for SEARCH
+  get 'product_search' => 'product_search#index', as: :product_search
+  post 'product_search/find' => 'product_search#find', as: :find
   # USER ROUTES
   get 'users/' => 'users#index'
   get 'users/new' => 'users#new', as: :new_user
@@ -13,13 +15,13 @@ Rails.application.routes.draw do
   delete 'users/:id' => 'users#destroy'
 
   # MAKE UP CASE ROUTES
-  get 'makeupcases/' => 'makeupcases#index'
-  get 'makeupcases/new' => 'makeupcases#new', as: :new_makeupcase
-  get 'makeupcases/:id' => 'makeupcases#show', as: :makeupcase
-  post 'makeupcases/' => 'makeupcases#create'
-  get 'makeupcases/:id/edit' => 'makeupcases#edit', as: :edit_makeupcase
-  patch 'makeupcases/:id' => 'makeupcases#update'
-  delete 'makeupcases/:id' => 'makeupcases#destroy'
+  # get 'makeupcases/' => 'makeupcases#index'
+  # get 'makeupcases/new' => 'makeupcases#new', as: :new_makeupcase
+  # get 'makeupcases/:id' => 'makeupcases#show', as: :makeupcase
+  # post 'makeupcases/' => 'makeupcases#create'
+  # get 'makeupcases/:id/edit' => 'makeupcases#edit', as: :edit_makeupcase
+  # patch 'makeupcases/:id' => 'makeupcases#update'
+  # delete 'makeupcases/:id' => 'makeupcases#destroy'
 
   # PRODUCT ROUTES
   get 'products/' => 'products#index'

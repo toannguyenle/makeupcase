@@ -4,8 +4,6 @@ require 'httparty'
 require 'rails/all'
 require 'factual'
 
-
-factual = Factual.new(ENV["FT_CLIENT_ID"], ENV["FT_CLIENT_SECRET"])
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

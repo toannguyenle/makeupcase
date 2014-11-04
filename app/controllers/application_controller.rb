@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.where(id: session[:user_id]).first
   end
+
+  def factual
+    @factual = Factual.new(ENV["FT_CLIENT_ID"], ENV["FT_CLIENT_SECRET"])
+  end
 end

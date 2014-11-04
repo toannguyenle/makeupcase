@@ -1,0 +1,59 @@
+<!-- SEARCH BAR -->
+<%= render './home/search' %>
+<!-- END OF SEARCH BAR -->
+<div class="row">
+  <div id="signin" class="col-sm-10 col-sm-offset-1">
+    <h1>Products Factual API Test</h1>
+      <table class="table table-condensed table-hover">
+        <tr>
+          <th>Brand</th>
+          <th>Name</th>
+          <th>Size</th>
+          <th>UPC</th>
+          <th>Ave Price</th>
+          <th>Pictures</th>
+          <th>Add</th>
+        </tr>
+        <% @products.each do |r| %>
+          <tr>
+            <% if r['brand'] %>
+              <td class="vert-align"><%= r['brand'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if r['product_name'] %>
+              <td class="vert-align"><%= r['product_name'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if r['size'] %>
+              <td class="vert-align"><%= r['size'][0] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if r['upc'] %>
+              <td class="vert-align"><%= r['upc'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if r['ave_price'] %>
+              <td class="vert-align"><%= r['ave_price'] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+              <% if r['image_urls'] %>
+              <td class="vert-align"><%= image_tag(r['image_urls'].first, :class => "img-rounded", :height => "50") %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <td class="vert-align">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default">Add</button>
+                <button type="button" class="btn btn-default">Edit</button>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+  </div>
+</div>
