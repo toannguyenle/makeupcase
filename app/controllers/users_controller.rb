@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if user.save
       # the moment you sign up it logs  you in
       session[:user_id] = user.id.to_s
-      redirect_to new_makeupcase_path
+      redirect_to products_path
     else
       redirect_to new_user_path
     end

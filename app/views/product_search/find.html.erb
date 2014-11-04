@@ -1,6 +1,4 @@
-<!-- SEARCH BAR -->
-<%= render './home/search' %>
-<!-- END OF SEARCH BAR -->
+
 <div class="row">
   <div id="signin" class="col-sm-10 col-sm-offset-1">
     <h1>Products Factual API Test</h1>
@@ -14,7 +12,7 @@
           <th>Pictures</th>
           <th>Add</th>
         </tr>
-        <% @products.each do |r| %>
+        <% @products.each_with_index do |r,index| %>
           <tr>
             <% if r['brand'] %>
               <td class="vert-align"><%= r['brand'] %></td>
@@ -48,8 +46,7 @@
             <% end %>
             <td class="vert-align">
               <div class="btn-group">
-                <button type="button" class="btn btn-default">Add</button>
-                <button type="button" class="btn btn-default">Edit</button>
+                <%= button_to('Add', products_path(:product => r), :controller => 'products_controller', :action => 'create', :data => {:id => index, :factual_id => r['factual_id']}) %>
               </div>
             </td>
           </tr>

@@ -29,7 +29,7 @@
     </tr>
         <tr>
           <td><%= @product.brand %></td>
-          <td><%= @product.name %></td>
+          <td><%= @product.product_name %></td>
           <td><%= @product.size %></td>
           <td><%= @product.upc %></td>
           <td><%= @product.ean13 %></td>
@@ -40,7 +40,15 @@
           <td><%= @product.ingredients %></td>
           <td><%= @product.short_description %></td>
           <td><%= @product.full_description %></td>
-          <td><%= @product.image_urls %></td>
+          <td>
+            <!-- Check make sure image is availble to show, otherwise don't -->
+            <% @product.image_urls.each do |image| %>
+
+
+
+              <%= image_tag(image, :class => "img-rounded", :height => "50") %>
+            <% end %>
+          </td>
           <td><%= @product.date_first_use %></td>
           <td><%= @product.date_expired %></td>
           <td><%= @product.like_or_not %></td>

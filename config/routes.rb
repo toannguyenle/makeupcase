@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/' => 'home#index', as: :root
   # ROUTE for SEARCH
   get 'product_search' => 'product_search#index', as: :product_search
+  get 'product_search/find' => 'product_search#index'
   post 'product_search/find' => 'product_search#find', as: :find
   # USER ROUTES
   get 'users/' => 'users#index'

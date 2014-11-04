@@ -24,7 +24,7 @@
           <td>
             <% if u.products %>
               <% u.products.each do |p| %>
-              <%= p.name %> - <%= p. brand%> - <%= p.like_or_not %> - <%= p.date_first_use %><br />
+              <%= p.product_name %> - <%= p. brand%> - <%= p.like_or_not %> - <%= p.date_first_use %><br />
               <% end %>
             <% end %>
           </td>

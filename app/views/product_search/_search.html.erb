@@ -1,0 +1,3 @@
+<%= form_tag(find_path, method: :post) do %>
+  <%= text_field_tag(:query, params[:query], :class => 'form-control input-lg', :placeholder => 'type your favorite product here')%>
+<% end %>
