@@ -19,8 +19,6 @@ class Product
   field :like_or_not, type: Mongoid::Boolean
   field :review, type: String
   field :amazon_link, type: String
-  field :walmart_link, type: String
-  field :buycom_link, type: String
 
   belongs_to :user
 end

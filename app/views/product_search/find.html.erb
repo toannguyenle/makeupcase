@@ -41,11 +41,9 @@
             <td class="vert-align">
               <div class="btn-group">
                 
-                <%= button_to('Add', products_path(:product => r), :controller => 'products_controller', :action => 'add_to_case', :data => {:toggle=>'modal', :target => '.bs-example-modal-sm'}, :class => "btn btn-primary") %>
-                
-                <%#= button_to('Add1', add_to_case_path, :method => 'get', :data => {:select_product => r, :toggle=>'modal', :target => '.bs-example-modal-sm'}, :class => "btn btn-primary") %>
+                <%#= button_to('Add', products_path(:product => r), :controller => 'products_controller', :action => 'create', :class => "btn btn-primary") %>
 
-                <%= link_to 'Edit', add_to_case_path, :data => {:controller => "product_search_controller", :action => "add_to_case", :select_product => r} %>
+                <%= link_to 'Edit', add_to_case_path(:select_product => r), :data => {:controller => "product_search_controller", :action => "add_to_case"} %>
               </div>
             </td>
           </tr>
@@ -62,9 +60,6 @@
       asdfhsdlakjfasdf
       asdfasdfkhalsdjfhsf
       asdfsdfafdfdf
-      <% if @select_product %>
-        <%= raise @select_product.inspect %>
-      <% end %>
     </div>
   </div>
 </div>

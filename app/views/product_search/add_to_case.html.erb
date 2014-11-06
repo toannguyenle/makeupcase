@@ -5,18 +5,40 @@
 </div>
 
 <div class="row">
-  <div id="signin" class="col-sm-6 col-sm-offset-3">
+  <div id="signin" class="col-sm-4 col-sm-offset-3">
     <%#= raise @select_product.inspect %>
-    <%= bootstrap_form_for(@select_product) do |f| %>
-      <%= f.text_field :brand%>
-      <%= f.text_field :product_name%>
-      <%= f.text_field :size%>
-      <%= f.text_field :avg_price%>
-      <%= f.date_field :date_first_use%>
-      <%= f.date_field :date_expired%>
-      <%= f.check_box :like_or_not, label: 'Like?'%>
-      <%= f.text_area :review%>
-      <%= f.submit 'Add to my beauty case', :class => 'btn btn-primary btn-lg btn-block'%>
+    <%= form_tag create_add_to_case_path(:product => @select_product), :method => 'post' do%>
+    <div class="form-group">
+      <%= label_tag 'Brand' %>
+      <%= text_field_tag :brand, @select_product['brand'], label: 'Brand', :class => 'form-control'%>
+      <%= label_tag 'Product name' %>
+      <%= text_field_tag :product_name, @select_product['product_name'], :class => 'form-control'%>
+      <%= label_tag 'Size' %>
+      <%= text_field_tag :size, @select_product['size'], :class => 'form-control'%>
+      <%= label_tag 'Price' %>
+      <%= number_field_tag :avg_price, @select_product['avg_price'], :class => 'form-control'%>
+      <%= label_tag 'Opened on' %>
+      <%= date_field_tag :date_first_use, Date.today, :class => 'form-control'%>
+      <%= label_tag 'Expired on (remind me!)' %>
+      <%= date_field_tag :date_expired, Date.today + 12.months, :class => 'form-control'%>
+      <div class="checkbox">
+        <label>
+         <%= check_box_tag :like_or_not%>Like
+        </label>
+      </div>
+      <%= label_tag 'Review' %>
+      <%= text_area_tag :review, nil, :class => 'form-control' %>
+
+      <%= hidden_field :factual_id, @select_product['factual_id'] %>
+      <%= hidden_field :category, @select_product['category'] %>
+      <%= submit_tag 'Add to my beauty case', :class => 'btn btn-primary btn-lg btn-block'%>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="col-sm-3">
+    <% @select_product['image_urls'].each do |image| %>
+      <%= image_tag(image, :class => "img-rounded", :width => "100") %>
     <% end %>
   </div>
 </div>
