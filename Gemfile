@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.5'
 gem 'rails_12factor'
 gem 'factual-api'
+# GEM PRY
+gem 'pry-rails', :group => :development
 # We use this to authenticate and pull feeds
 gem 'httparty'
 # Use sqlite3 as the database for Active Record

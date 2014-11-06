@@ -7,12 +7,11 @@
           <th>Brand</th>
           <th>Name</th>
           <th>Size</th>
-          <th>UPC</th>
           <th>Ave Price</th>
           <th>Pictures</th>
-          <th>Add</th>
+          <th></th>
         </tr>
-        <% @products.each_with_index do |r,index| %>
+        <% @products.each do |r| %>
           <tr>
             <% if r['brand'] %>
               <td class="vert-align"><%= r['brand'] %></td>
@@ -29,13 +28,8 @@
             <% else %>
               <td>-</td>
             <% end %>
-            <% if r['upc'] %>
-              <td class="vert-align"><%= r['upc'] %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-            <% if r['ave_price'] %>
-              <td class="vert-align"><%= r['ave_price'] %></td>
+            <% if r['avg_price'] %>
+              <td class="vert-align">$<%= r['avg_price'] %></td>
             <% else %>
               <td>-</td>
             <% end %>
@@ -46,11 +40,31 @@
             <% end %>
             <td class="vert-align">
               <div class="btn-group">
-                <%= button_to('Add', products_path(:product => r), :controller => 'products_controller', :action => 'create', :data => {:id => index, :factual_id => r['factual_id']}) %>
+                
+                <%= button_to('Add', products_path(:product => r), :controller => 'products_controller', :action => 'add_to_case', :data => {:toggle=>'modal', :target => '.bs-example-modal-sm'}, :class => "btn btn-primary") %>
+                
+                <%#= button_to('Add1', add_to_case_path, :method => 'get', :data => {:select_product => r, :toggle=>'modal', :target => '.bs-example-modal-sm'}, :class => "btn btn-primary") %>
+
+                <%= link_to 'Edit', add_to_case_path, :data => {:controller => "product_search_controller", :action => "add_to_case", :select_product => r} %>
               </div>
             </td>
           </tr>
         <% end %>
       </table>
+  </div>
+</div>
+
+<!-- Small modal -->
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      asdfhsdlakjfasdf
+      asdfasdfkhalsdjfhsf
+      asdfsdfafdfdf
+      <% if @select_product %>
+        <%= raise @select_product.inspect %>
+      <% end %>
+    </div>
   </div>
 </div>

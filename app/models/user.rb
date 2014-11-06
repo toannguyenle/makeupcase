@@ -7,6 +7,8 @@ class User
   field :agree_marketing, type: Mongoid::Boolean
   field :password_digest, type: String
   field :member_since, type: String
+  field :is_public, type: Mongoid::Boolean
 
+  validates_uniqueness_of :email
   has_many :products, dependent: :destroy
 end
