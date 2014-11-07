@@ -1,8 +1,19 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'httparty'
-require 'rails/all'
+# require 'rails/all'
 require 'factual'
+
+# FIXING SQLITE
+# Pick the frameworks you want:
+require "active_model/railtie"
+# require "active_record/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "action_view/railtie"
+require "sprockets/railtie"
+require "rails/test_unit/railtie"
+# END FIXING
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -21,5 +32,10 @@ module Routespractice
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    
+    # MORE FIXING
+    config.assets.paths << Rails.root.join("vendor","assets","bower_components")
+    config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
+    config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
   end
 end

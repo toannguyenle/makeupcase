@@ -3,49 +3,27 @@
     <h1>Your make up case</h1>
   </div>
 </div>
-<div class="row">
-  <div id="signin" class="col-sm-10 col-sm-offset-1">
-    <% if @products %>
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <tr>
-            <th>Brand</th>
-            <th>Name</th>
-            <th>Size</th>
-            <th>Category</th>
-            <th>Ave Price</th>
-            <th>Opened Date</th>
-            <th>Expiration Date</th>
-            <th>Like or Not</th>
-            <th>Review</th>
-            <th>More Info</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-              <% @products.each do |p| %>
-                <tr>
-                  <td><%= p.brand %></td>
-                  <td><%= p.product_name %></td>
-                  <td><%= p.size %></td>
-                  <td><%= p.category %></td>
-                  <td><%= p.avg_price %></td>
-                  <td><%= p.date_first_use %></td>
-                  <td><%= p.date_expired %></td>
-                  <td><%= p.like_or_not %></td>
-                  <td><%= p.review %></td>
-                  <td><%= link_to '+', product_path(p) %></td>
-                  <td><%= link_to 'Edit', edit_product_path(p) %></td>
-                  <td><%= link_to 'X', p, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-                </tr>
-              <% end %>
-        </table>
-      </div>
-    <% else %>
-      <div class="row">
-        <div class="col-sm-4 col-sm-offset-4">
-          <h3>No product available. Add more here.</h3>
+
+<div class="row"></div>
+  <div class="col-sm-10 col-sm-offset-1">
+      <% @products.each do |p| %>
+        <div id="signin" class="col-sm-6 col-md-4 col-md-offset-1">
+            <h4><strong><%= p.product_name %></strong></h4>
+            <h4><small>by <%= p.brand %></small></h4>
+            <span class="label label-default"><%= p.category %></span><br>
+            <strong>Size</strong>
+            <%= p.size %><br>
+            <strong>Ave price $</strong> <%= p.avg_price %><br>
+            Opened on: <%= p.date_first_use %>
+            Expired on: <%= p.date_expired %>
+            Like <%= p.like_or_not %><br>
+            <%= link_to ' More ', product_path(p) %>
+            <%= link_to ' Edit ', edit_product_path(p) %>
+            <%= link_to ' Delete ', p, method: :delete, data: {confirm: 'Are you sure?'} %>
+            <% if eval(p.image_urls) %>
+                <%= image_tag(eval(p.image_urls).first, :class => "img-rounded", :width => "200") %>
+            <% end %>
         </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+      <% end %>
+    </div>
+    </div>
