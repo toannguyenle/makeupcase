@@ -10,7 +10,7 @@ gem 'pry-rails', :group => :development
 # We use this to authenticate and pull feeds
 gem 'httparty'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', '>= 1.3.10'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
