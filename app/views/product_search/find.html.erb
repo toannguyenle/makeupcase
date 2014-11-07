@@ -34,8 +34,8 @@
               <td>-</td>
             <% end %>
               <% if r['image_urls'] %>
-              <td class="vert-align"><%= image_tag(r['image_urls'].first, :class => "img-rounded", :height => "50") %></td>
-            <% else %>
+                <td class="vert-align"><%= image_tag(r['image_urls'].first, :class => "img-rounded", :height => "50") %></td>
+              <% else %>
               <td>-</td>
             <% end %>
             <td class="vert-align">
@@ -43,7 +43,13 @@
                 
                 <%#= button_to('Add', products_path(:product => r), :controller => 'products_controller', :action => 'create', :class => "btn btn-primary") %>
 
-                <%= link_to 'Edit', add_to_case_path(:select_product => r), :data => {:controller => "product_search_controller", :action => "add_to_case"} %>
+                <%= link_to 'Add', add_to_case_path(:select_product => r), :data => {:controller => "product_search_controller", :action => "add_to_case"} %>
+
+                <%#= button_to('Add', products_path(:product => r), :controller => 'products_controller', :action => 'create', :data => {:id => index, :factual_id => r['factual_id']}) %>
+                
+                <%#= button_to('Add', products_path(:product => r), :controller => 'products_controller', :action => 'add_to_case', :data => {:toggle=>'modal', :target => '.bs-example-modal-sm'}, :class => "btn btn-primary") %>
+
+                <%#= button_to('Add1', find_path(:select_product => r), :method => 'get', :data => {:select_product => r, :toggle=>'modal', :target => '.bs-example-modal-sm'}, :class => "btn btn-primary") %>
               </div>
             </td>
           </tr>
@@ -52,14 +58,28 @@
   </div>
 </div>
 
-<!-- Small modal -->
+<!-- Small modal NOT WORING YET NEED BUTTON-->
 
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-      asdfhsdlakjfasdf
-      asdfasdfkhalsdjfhsf
-      asdfsdfafdfdf
+      <% if @select_product %>
+        <%= bootstrap_form_for @select_product do |f|%>
+          <div class="form-group">
+            <%= f.text_field :brand%>
+            <%= f.text_field :product_name%>
+            <%= f.text_field :size%>
+            <%= f.text_field :category%>
+            <%= f.text_field :avg_price%>
+            <%= f.date_field :date_first_use%>
+            <%= f.date_field :date_expired%>
+            <%= f.check_box :like_or_not, label: 'Like?'%>
+            <%= f.text_area :review%>
+
+            <%= f.submit 'change' %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

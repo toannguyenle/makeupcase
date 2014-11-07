@@ -16,11 +16,11 @@ class ProductsController < ApplicationController
     @product = Product.new(products_params)
     @product.user_id = current_user.id.to_s
     # IMAGE ISSUE WITH ADDING OBJECT INTO DATABASE NOT FIXED.
-    if params[:product]['image_urls']
-      params[:product]['image_urls'].each_with_index do |i,index|
-        @product.image_urls[index] = i
-      end
-    end
+    # if params[:product]['image_urls']
+    #   params[:product]['image_urls'].each_with_index do |i,index|
+    #     @product.image_urls[index] = i
+    #   end
+    # end
 
     if @product.save
       redirect_to products_path
@@ -61,6 +61,6 @@ class ProductsController < ApplicationController
       end
     end
     def products_params
-      params.require(:product).permit(:factual_id, :amazon_link, :brand, :product_name, :size, :upc, :ean13, :upc_e, :category, :avg_price, :manufacturer, :ingredients, :short_description, :full_description, :image_urls, :date_first_use, :date_expired, :like_or_not, :review, :user_id)
+      params.require(:product).permit(:amazon_ASIN, :factual_id, :amazon_link, :brand, :product_name, :size, :upc, :ean13, :upc_e, :category, :avg_price, :manufacturer, :ingredients, :short_description, :full_description, :image_urls, :date_first_use, :date_expired, :like_or_not, :review, :user_id)
     end
 end

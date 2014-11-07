@@ -6,39 +6,48 @@
 
 <div class="row">
   <div id="signin" class="col-sm-4 col-sm-offset-3">
-    <%#= raise @select_product.inspect %>
-    <%= form_tag create_add_to_case_path(:product => @select_product), :method => 'post' do%>
-    <div class="form-group">
-      <%= label_tag 'Brand' %>
-      <%= text_field_tag :brand, @select_product['brand'], label: 'Brand', :class => 'form-control'%>
-      <%= label_tag 'Product name' %>
-      <%= text_field_tag :product_name, @select_product['product_name'], :class => 'form-control'%>
-      <%= label_tag 'Size' %>
-      <%= text_field_tag :size, @select_product['size'], :class => 'form-control'%>
-      <%= label_tag 'Price' %>
-      <%= number_field_tag :avg_price, @select_product['avg_price'], :class => 'form-control'%>
-      <%= label_tag 'Opened on' %>
-      <%= date_field_tag :date_first_use, Date.today, :class => 'form-control'%>
-      <%= label_tag 'Expired on (remind me!)' %>
-      <%= date_field_tag :date_expired, Date.today + 12.months, :class => 'form-control'%>
-      <div class="checkbox">
-        <label>
-         <%= check_box_tag :like_or_not%>Like
-        </label>
-      </div>
-      <%= label_tag 'Review' %>
-      <%= text_area_tag :review, nil, :class => 'form-control' %>
+    <!-- form for -->
+        <%= bootstrap_form_for @select_product do |f|%>
+          <div class="form-group">
+            <%= f.text_field :brand%>
+            <%= f.text_field :product_name%>
+            <%= f.text_field :size, :value => params[:select_product]['size'].first%>
+            <%= f.text_field :category%>
+            <%= f.text_field :avg_price, :value => params[:select_product]['avg_price']%>
+            <%= f.date_field :date_first_use, :value =>Date.today%>
+            <%= f.date_field :date_expired, :value =>Date.today+1.year%>
+            <%= f.check_box :like_or_not, label: 'Like?'%>
+            <%= f.text_area :review%>
 
-      <%= hidden_field :factual_id, @select_product['factual_id'] %>
-      <%= hidden_field :category, @select_product['category'] %>
-      <%= submit_tag 'Add to my beauty case', :class => 'btn btn-primary btn-lg btn-block'%>
-    </div>
-    <% end %>
+            <%= f.hidden_field :factual_id, :value => params[:select_product]['factual_id']  %>
+            <%= f.hidden_field :upc, :value => params[:select_product]['upc']  %>
+            <%= f.hidden_field :ean13, :value => params[:select_product]['ean13']  %>
+            <%= f.hidden_field :upc_e, :value => params[:select_product]['upc_e']  %>
+            <%= f.hidden_field :manufacturer, :value => params[:select_product]['manufacturer']  %>
+            <%= f.hidden_field :ingredients, :value => params[:select_product]['ingredients']  %>
+            
+            <!-- CLONE IMAGE URLS -->
+            <% if params[:select_product]['image_urls'] %>
+              <% params[:image_urls] = [] %>
+              <% params[:select_product]['image_urls'].each do |i| %>
+                <% params[:image_urls].push(i) %>
+              <% end %>
+            <% end %>
+
+            <%= f.hidden_field :image_urls, :value => params[:image_urls] %>
+            <%= f.hidden_field :amazon_link, :value => params[:select_product]['amazon_link']  %>
+            <%= f.hidden_field :amazon_ASIN, :value => params[:select_product]['amazon_ASIN']  %>
+            <%= f.submit 'Add to my case!', :class => 'btn btn-primary btn-lg btn-block' %>
+          </div>
+        <% end %>
+    <!-- form for end -->
   </div>
-
+<%#= raise params[:select_product]['image_urls'].inspect %>
   <div class="col-sm-3">
-    <% @select_product['image_urls'].each do |image| %>
-      <%= image_tag(image, :class => "img-rounded", :width => "100") %>
+    <% if params[:select_product]['image_urls'] %>
+      <% params[:select_product]['image_urls'].each do |image| %>
+        <%= image_tag(image, :class => "img-rounded", :width => "100") %>
+      <% end %>
     <% end %>
   </div>
 </div>

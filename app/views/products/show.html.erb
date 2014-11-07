@@ -42,11 +42,10 @@
           <td><%= @product.full_description %></td>
           <td>
             <!-- Check make sure image is availble to show, otherwise don't -->
-            <% @product.image_urls.each do |image| %>
-
-
-
-              <%= image_tag(image, :class => "img-rounded", :height => "50") %>
+            <% if eval(@product.image_urls) %>
+              <% eval(@product.image_urls).each do |image| %>
+                <%= image_tag(image, :class => "img-rounded", :height => "50") %>
+              <% end %>
             <% end %>
           </td>
           <td><%= @product.date_first_use %></td>

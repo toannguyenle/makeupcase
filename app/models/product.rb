@@ -13,12 +13,13 @@ class Product
   field :ingredients, type: String
   field :short_description, type: String
   field :full_description, type: String
-  field :image_urls, type: Array, default: [1,2,3,4]
+  field :image_urls, type: String
   field :date_first_use, type: Date
   field :date_expired, type: Date
   field :like_or_not, type: Mongoid::Boolean
   field :review, type: String
   field :amazon_link, type: String
+  field :amazon_ASIN, type: String
 
   belongs_to :user
 end
