@@ -11,7 +11,11 @@
           <div class="form-group">
             <%= f.text_field :brand%>
             <%= f.text_field :product_name%>
+            <% if !params[:select_product]['size'] %>
+            <% params[:select_product]['size'] = "" %>
+            <% end %>
             <%= f.text_field :size, :value => params[:select_product]['size'].first%>
+
             <%= f.text_field :category%>
             <%= f.text_field :avg_price, :value => params[:select_product]['avg_price']%>
             <%= f.date_field :date_first_use, :value =>Date.today%>

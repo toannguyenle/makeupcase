@@ -4,7 +4,7 @@
       <% if @user.photos && @user.photos.first %>
       <%#= raise @user.photos.first.image.url(:thumb).inspect %>
         <div class="text-center">
-          <%= image_tag @user.photos.last.image.url(:thumbnail), :class => "img-circle" %>
+          <%= image_tag @user.photos.last.image.url(:thumbnail), :class => "img-circle thumbnail" %>
           <%= bootstrap_form_for(@photo, :url => {:action => :create, :controller => :photos}) do |f| %>
             <%= f.file_field :image %>
             <%= f.submit 'Change'%>
