@@ -10,7 +10,6 @@ gem 'pry-rails', :group => :development
 # We use this to authenticate and pull feeds
 
 gem 'httparty'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -20,9 +19,11 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 gem 'mongoid', github: 'mongoid/mongoid'
-
+gem 'mongoid-rspec'
+gem "mongoid-paperclip", "~> 0.0.8", :require => "mongoid_paperclip"
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'bootstrap_form'
+gem 'aws-sdk', '~> 1.3.4'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt-ruby', '~>3.1.2'

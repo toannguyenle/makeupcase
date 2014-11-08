@@ -1,5 +1,23 @@
 <div class="row">
   <div id="signin" class="col-sm-4 col-sm-offset-4">
+    <%#= raise @user.photos.last.inspect %>
+      <% if @user.photos && @user.photos.first %>
+      <%#= raise @user.photos.first.image.url(:thumb).inspect %>
+        <div class="text-center">
+          <%= image_tag @user.photos.last.image.url(:thumbnail), :class => "img-circle" %>
+          <%= bootstrap_form_for(@photo, :url => {:action => :create, :controller => :photos}) do |f| %>
+            <%= f.file_field :image %>
+            <%= f.submit 'Change'%>
+          <% end %>
+        </div>
+      <% else %>
+        <%= bootstrap_form_for(@photo, :url => {:action => :create, :controller => :photos}) do |f| %>
+          <%= f.label :image, 'Submit profile' %>
+          <%= f.file_field :image %>
+          <%= f.submit 'Submit', :class => 'btn btn-primary'%>
+        <% end %>
+      <% end %>
+
     <%= bootstrap_form_for(@user) do |f| %>
       <%= f.text_field :name%>
       <%= f.email_field :email%>

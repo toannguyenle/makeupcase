@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
+  resources :photos
   # PAGE ROUTES
   get '/' => 'home#index', as: :root
   # ROUTE for SEARCH
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   get 'users/new' => 'users#new', as: :new_user
   get 'users/:id' => 'users#show', as: :user
   post 'users/' => 'users#create'
+
   get 'users/:id/edit' => 'users#edit', as: :edit_user
   patch 'users/:id' => 'users#update'
   delete 'users/:id' => 'users#destroy'

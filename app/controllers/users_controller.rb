@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
+  before_action :make_sure_logged_in, only: [:create, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  
   def index
     @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
+    @photo = Photo.new
   end
 
   def new
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @photo =Photo.new
     @user = User.find(params[:id])
   end
 
@@ -52,13 +54,19 @@ class UsersController < ApplicationController
   end
   
   private
+    # Make sure only logged in user can see other user list
+    def make_sure_logged_in
+      if !current_user 
+        redirect_to new_sessions_path
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
-    end
+    # def user_params
+    #   params.require(:user).permit(:agree_marketing, :member_since, :is_public, :email, :avatar, :username, :password, :password_confirmation, :)
+    # end
 end
