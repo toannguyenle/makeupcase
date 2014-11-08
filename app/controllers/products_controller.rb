@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :make_sure_logged_in, only: [:create, :edit, :update, :new, :destroy]
+  before_action :make_sure_logged_in, only: [:index, :create, :edit, :update, :new, :destroy]
   def index
     @products = Product.where('user_id' => current_user.id.to_s)
   end

@@ -1,38 +1,53 @@
 <div class="row">
-  <div class="col-sm-4 col-sm-offset-4">
-    <h1>Users List</h1>
+  <div class="col-sm-10 col-sm-offset-1">
+
+    <% @users.each do |u| %>
+      <!-- ONLY DISPLAY PUBLIC USER -->
+      <% if u.is_public %>
+        <div class="col-sm-6 col-md-4 text-center">
+          <div class="thumbnail">
+            <% if u.photos && u.photos.last %>
+              <%= link_to(image_tag(u.photos.last.image.url(:thumbnail), :class => "img-circle thumbnail"), user_path(u)) %>
+            <% else %>
+              <%= link_to(image_tag("http://s3.amazonaws.com/mybeautycase-assets/photos/images/545d/cb54/6433/3600/0203/0000/thumbnail/icon.jpg?1415433043", :class => "img-circle thumbnail"), user_path(u)) %>
+            <% end %>
+            <div class="caption">
+              <h5>
+                <strong><%= u.name %></strong>
+                <% if u.is_celebrity %>
+                  <small><span style="color:rgb(51,204,255)" class="glyphicon glyphicon-ok-sign"></span></small>
+                <% end %>
+              </h5>
+              <h5><small>@<%= u.username %></small></h5>
+              <p>
+                <%= u.about_me %>
+              </p>
+              <p>
+                <% if u.products %>
+                  <% u.products.each do |p| %>
+                    <% if eval(p.image_urls) %>
+                      <%= link_to(image_tag(eval(p.image_urls).first, :class => "img-rounded", :width => "70"), product_path(p)) %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </p>
+              <p>
+                <div class=".btn-group.btn-group-justified">
+                  <button type="button" class="btn btn-info">Follow</button>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                      <span class="caret"></span>
+                      <span class="sr-only"><span class="glyphicon glyphicon-cog"></span></span>
+                    </button>
+                  </div>
+                </div>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
+
   </div>
 </div>
-<div class="table-responsive">
-  <table class="table table-hover">
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Agree Marketing</th>
-      <th>Member Since</th>
-      <th>Makeup Case Contents</th>
-      <th>More info</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-      <% @users.each do |u| %>
-        <tr>
-          <td><%= u.name %></td>
-          <td><%= u.email %></td>
-          <td><%= u.agree_marketing %></td>
-          <td><%= u.member_since %></td>
-          <td>
-            <% if u.products %>
-              <% u.products.each do |p| %>
-              <%= p.product_name %> - <%= p. brand%> - <%= p.like_or_not %> - <%= p.date_first_use %><br />
-              <% end %>
-            <% end %>
-          </td>
-          <td><%= link_to '+', u %></td>
-          <td><%= link_to 'Edit', edit_user_path(u) %></td>
-          <td><%= link_to 'X', u, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-        </tr>
-      <% end %>
-  </table>
-</div>
-

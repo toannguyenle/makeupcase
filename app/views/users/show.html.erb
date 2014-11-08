@@ -1,5 +1,5 @@
 <div class="row">
-  <div id="signin" class="col-sm-4 col-sm-offset-4">
+  <div id="signin" class="col-sm-6 col-sm-offset-3">
     <div>
       <% if @user.photos && @user.photos.last %>
         <%= image_tag @user.photos.last.image.url(:thumbnail), :class => "img-circle thumbnail" %>
@@ -11,39 +11,97 @@
         <% end %>
       <% end %>
     </div>
-    <table class="table table-hover">
-      <tr>
-        <td>Name</td>
-        <th><%= @user.name%></th>
-      </tr>
-      <tr>
-        <td>Email</td>
-        <td><%= @user.email%></td>
-      </tr>
-      <tr>
-        <td>Email subscription</td>
-        <% if @agree_marketing %>
-          <td>Yes</td>
-        <% else %>
-          <td>No</td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>Privacy Settings</td>
-        <% if @user.is_public %>
-          <td>Public</td>
-        <% else %>
-          <td>Private</td>
-        <% end %>
-      </tr>
-      <tr class="active">
-        <td class="text-right">
-          <%= link_to 'Back', products_path%>
-          <%= link_to 'Edit', edit_user_path(@user)%>
-        </td>
-        <td class="text-left"><%= link_to 'Delete Account', @user, method: :delete, data: {confirm: 'Are you sure? All your content will be lost and you will have to start all over again.'} %></td>
+    <% if current_user && (current_user.id == @user.id) %>
+    <!-- USER ONLY VIEW -->
+      <table class="table table-hover">
+        <tr>
+          <td>Name</td>
+          <th><%= @user.name%>
+            <% if @user.is_celebrity %>
+              <small><span style="color:rgb(51,204,255)" class="glyphicon glyphicon-ok-sign"></span></small>
+            <% end %>
+          </th>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><%= @user.email%></td>
+        </tr>
+        <tr>
+          <td>Start organize since</td>
+          <td><%= @user.member_since%></td>
+        </tr>
+        <tr>
+          <td>About me</td>
+          <td><%= @user.about_me %></td>
+        </tr>
+        <tr>
+          <td>Email subscription</td>
+          <% if @agree_marketing %>
+            <td>Yes</td>
+          <% else %>
+            <td>No</td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Privacy Settings</td>
+          <% if @user.is_public %>
+            <td>Public</td>
+          <% else %>
+            <td>Private</td>
+          <% end %>
+        </tr>
+        <tr class="active">
+          <td class="text-right">
+            <%= link_to 'Back', products_path%>
+            <%= link_to 'Edit', edit_user_path(@user)%>
+          </td>
+          <td class="text-left"><%= link_to 'Delete Account', @user, method: :delete, data: {confirm: 'Are you sure? All your content will be lost and you will have to start all over again.'} %>
+          </td>
+        </tr>
+      </table>
 
-      </tr>
-    </table>
+    <% else %>
+      <!-- PUBLIC VIEW -->
+
+      <div class="caption">
+        <h4>
+          <strong><%= @user.name %></strong>
+          <% if @user.is_celebrity %>
+            <small><span style="color:rgb(51,204,255)" class="glyphicon glyphicon-ok-sign"></span></small>
+          <% end %>
+        </h4>
+        <h4><small>@<%= @user.username %></small></h4>
+        <div class=".btn-group.btn-group-justified">
+          <button type="button" class="btn btn-info">Follow</button>
+        </div>
+        <p>
+          <%= @user.about_me %>
+        </p>
+        <p>
+          <% if @user.products %>
+            <ul class="list-group">
+              <% @user.products.each do |p| %>
+                <% if eval(p.image_urls) %>
+                  <li class="list-group-item">
+                    <div class="media">
+                      <a class="media-left">
+                        <%= image_tag(eval(p.image_urls).first, :width => "70")%>
+                      </a>
+                      <div class="media-body">
+                        <h5 class="media-heading"><strong><%= p.product_name %></strong></h5>
+                          by <%= p.brand %><br>
+                          $<%= p.avg_price %>
+                          <span class="label label-default"><%= p.category %></span>
+                          <%= image_tag("http://g-ecx.images-amazon.com/images/G/01/gno/images/general/navAmazonLogoFooter._V169459313_.gif", :width => "70") %>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          <% end %>
+        </p>
+      </div>
+    <% end %>
   </div>
 </div>

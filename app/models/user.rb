@@ -6,6 +6,7 @@ class User
   field :name, type: String
   field :username, type: String
   field :email, type: String
+  field :about_me, type: String
   field :agree_marketing, type: Mongoid::Boolean
   field :password_digest, type: String
   field :member_since, type: String
