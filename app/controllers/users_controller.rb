@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end  
 
   def create
-    user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation, :agree_marketing))
+    user = User.new(user_params)
     if user.save
       # the moment you sign up it logs  you in
       session[:user_id] = user.id.to_s
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    # def user_params
-    #   params.require(:user).permit(:agree_marketing, :member_since, :is_public, :email, :avatar, :username, :password, :password_confirmation, :)
-    # end
+    def user_params
+      params.require(:user).permit(:name, :agree_marketing, :member_since, :is_public, :email, :avatar, :username, :password, :password_confirmation)
+    end
 end
