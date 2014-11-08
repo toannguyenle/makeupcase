@@ -21,11 +21,26 @@
         <td><%= @user.email%></td>
       </tr>
       <tr>
-        <td>Want to get our emails?</td>
-        <td><%= @user.agree_marketing%></td>
+        <td>Email subscription</td>
+        <% if @agree_marketing %>
+          <td>Yes</td>
+        <% else %>
+          <td>No</td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>Privacy Settings</td>
+        <% if @user.is_public %>
+          <td>Public</td>
+        <% else %>
+          <td>Private</td>
+        <% end %>
       </tr>
       <tr class="active">
-        <td class="text-right"><%= link_to 'Edit', edit_user_path(@user)%></td>
+        <td class="text-right">
+          <%= link_to 'Back', products_path%>
+          <%= link_to 'Edit', edit_user_path(@user)%>
+        </td>
         <td class="text-left"><%= link_to 'Delete Account', @user, method: :delete, data: {confirm: 'Are you sure? All your content will be lost and you will have to start all over again.'} %></td>
 
       </tr>

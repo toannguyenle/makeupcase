@@ -10,6 +10,7 @@ class User
   field :password_digest, type: String
   field :member_since, type: String
   field :is_public, type: Mongoid::Boolean
+  field :is_celebrity, type: Mongoid::Boolean
   validates_uniqueness_of :email, :username
   has_many :products, dependent: :destroy
   has_many :photos

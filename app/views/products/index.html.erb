@@ -1,29 +1,64 @@
 <div class="row">
   <div class="col-sm-4 col-sm-offset-4">
-    <h1>Your make up case</h1>
+    <h1><%= current_user.name %>'s beauty case</h1>
   </div>
 </div>
 
 <div class="row"></div>
   <div class="col-sm-10 col-sm-offset-1">
-      <% @products.each do |p| %>
-        <div id="signin" class="col-sm-6 col-md-4 col-md-offset-1">
+      
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+
+    <% @products.each do |p| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <% if eval(p.image_urls) %>
+                  <%= image_tag(eval(p.image_urls).first, :class => "img-rounded", :width => "200") %>
+          <% end %>
+          <div class="caption">
             <h4><strong><%= p.product_name %></strong></h4>
             <h4><small>by <%= p.brand %></small></h4>
             <span class="label label-default"><%= p.category %></span><br>
-            <strong>Size</strong>
-            <%= p.size %><br>
-            <strong>Ave price $</strong> <%= p.avg_price %><br>
-            Opened on: <%= p.date_first_use %>
-            Expired on: <%= p.date_expired %>
-            Like <%= p.like_or_not %><br>
-            <%= link_to ' More ', product_path(p) %>
-            <%= link_to ' Edit ', edit_product_path(p) %>
-            <%= link_to ' Delete ', p, method: :delete, data: {confirm: 'Are you sure?'} %>
-            <% if eval(p.image_urls) %>
-                <%= image_tag(eval(p.image_urls).first, :class => "img-rounded", :width => "200") %>
-            <% end %>
+            <p>
+              <strong>Size</strong>
+              <%= p.size %><br>
+              <strong>Ave price $</strong> <%= p.avg_price %><br>
+              Opened on <%= p.date_first_use %><br>
+              Expired on <%= p.date_expired %><br>
+              <% if p.like_or_not %>
+                <span class="glyphicon glyphicon-ok"></span>
+              <% else %>
+                <span class="glyphicon glyphicon-remove"></span>
+              <% end %>
+            </p>
+            
+            <p>
+              <div class=".btn-group.btn-group-justified">
+                <button type="button" class="btn btn-info btn-xs">Like</button>
+                <button type="button" class="btn btn-danger btn-xs">Want One!</button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only">More</span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><%= link_to ' More about this product ', product_path(p) %></li>
+                    <li><%= link_to ' Edit ', edit_product_path(p) %></li>
+                    <li class="divider"></li>
+                    <li><%= link_to ' Delete ', p, method: :delete %></li>
+                  </ul>
+                </div>
+              </div>
+            </p>
+          </div>
         </div>
-      <% end %>
-    </div>
-    </div>
+
+      </div>
+    <% end %>
+
+  </div>
+</div>

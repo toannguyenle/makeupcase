@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params.require(:user).permit(:name, :email, :password, :password_confirmation, :agree_marketing))
+    if @user.update_attributes(user_params)
       redirect_to user_path(@user)
     else
       redirect_to edit_user_path(@user)
@@ -67,6 +67,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :agree_marketing, :member_since, :is_public, :email, :avatar, :username, :password, :password_confirmation)
+      params.require(:user).permit(:is_celebrity, :name, :agree_marketing, :member_since, :is_public, :email, :avatar, :username, :password, :password_confirmation)
     end
 end
