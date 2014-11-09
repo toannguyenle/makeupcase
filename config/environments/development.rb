@@ -8,6 +8,20 @@ config.paperclip_defaults = {
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   }
 }
+AWS.config({
+:access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+:secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+}) 
+# TEST WITH AWS
+Amazon::Ecs.options = {
+  :associate_tag => '[mybeautycase-20]',
+  :AWS_access_key_id => ENV['AWS_ACCESS_KEY_ID'],       
+  :AWS_secret_key => ENV['AWS_SECRET_ACCESS_KEY']
+}
+# search all items, default search index is Books
+res = Amazon::Ecs.item_search('ruby', :search_index => 'All')
+
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

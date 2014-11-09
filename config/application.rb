@@ -3,6 +3,8 @@ require File.expand_path('../boot', __FILE__)
 require 'httparty'
 # require 'rails/all'
 require 'factual'
+# AWS lookup
+require 'amazon/ecs'
 
 # FIXING SQLITE
 # Pick the frameworks you want:

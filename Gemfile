@@ -24,6 +24,14 @@ gem "mongoid-paperclip", "~> 0.0.8", :require => "mongoid_paperclip"
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'bootstrap_form'
 gem 'aws-sdk', '~> 1.3.4'
+# AWS KEY LOOKUP
+gem 'amazon-ecs'
+gem 'nokogiri', '~> 1.4'
+gem 'ruby-hmac', '~> 0.3'
+group :dev do
+  gem 'rake'
+end
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt-ruby', '~>3.1.2'

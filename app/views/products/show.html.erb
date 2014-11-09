@@ -1,60 +1,42 @@
 <div class="row">
-  <div class="col-sm-4 col-sm-offset-4">
-    <h1>Product detail</h1>
-  </div>
-</div>
-<div class="table-responsive">
-  <table class="table table-hover">
-    <tr>
-      <th>Brand</th>
-      <th>Name</th>
-      <th>Size</th>
-      <th>UPC</th>
-      <th>EAN 13</th>
-      <th>UPC e</th>
-      <th>Category</th>
-      <th>Ave Price</th>
-      <th>Manufacturer</th>
-      <th>Ingredients</th>
-      <th>Short Description</th>
-      <th>Full Description</th>
-      <th>Image URLS</th>
-      <th>Opened Date</th>
-      <th>Expiration Date</th>
-      <th>Like or Not</th>
-      <th>Review</th>
-      <th>Belongs to</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-        <tr>
-          <td><%= @product.brand %></td>
-          <td><%= @product.product_name %></td>
-          <td><%= @product.size %></td>
-          <td><%= @product.upc %></td>
-          <td><%= @product.ean13 %></td>
-          <td><%= @product.upc_e %></td>
-          <td><%= @product.category %></td>
-          <td><%= @product.avg_price %></td>
-          <td><%= @product.manufacturer %></td>
-          <td><%= @product.ingredients %></td>
-          <td><%= @product.short_description %></td>
-          <td><%= @product.full_description %></td>
-          <td>
-            <!-- Check make sure image is availble to show, otherwise don't -->
-            <% if eval(@product.image_urls) %>
-              <% eval(@product.image_urls).each do |image| %>
-                <%= image_tag(image, :class => "img-rounded", :height => "50") %>
-              <% end %>
+  <div id="signin" class="col-sm-6 col-sm-offset-3">
+    <div>
+      <h4>
+        <strong><%= @product.product_name %></strong>
+      </h4>
+      <h4>
+        <small><%= @product.brand %></small>
+      </h4>
+    </div>
+      <div class="caption">
+        <p>
+          <%= @product.full_description %>
+        </p>
+        <!-- DISPLAY AVAI IMAGES -->
+        <p>
+          <% if eval(@product.image_urls) %>
+            <% eval(@product.image_urls).each do |image| %>
+              <%= image_tag(image, :class => "img-rounded", :height => "200") %>
             <% end %>
-          </td>
-          <td><%= @product.date_first_use %></td>
-          <td><%= @product.date_expired %></td>
-          <td><%= @product.like_or_not %></td>
-          <td><%= @product.review %></td>
-          <td><%= @product.user.name if @product.user %></td>
-          <td><%= link_to 'Edit', edit_product_path(@product) %></td>
-          <td><%= link_to 'X', @product, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-        </tr>
-  </table>
+          <% end %>
+        </p>
+        <p>
+        <!-- LIST INFO -->
+        <ul class="list-group">
+          <li class="list-group-item"> <strong> Review </strong> <%= @product.review %></li>
+          <li class="list-group-item"> <strong> Category </strong> <%= @product.category %></li>
+          <li class="list-group-item"> <strong> Price </strong> <%= @product.avg_price %></li>
+          <li class="list-group-item"> <strong> Opened on </strong> <%= @product.date_first_use %></li>
+          <li class="list-group-item"> <strong> Expired on </strong> <%= @product.date_expired %></li>
+          <li class="list-group-item"><%= @product.date_expired %></li>
+          <li class="list-group-item text-center">
+            <span class="label label-warning">belongs to <%= link_to(@product.user.name, user_path(@product.user)) if @product.user %></span>
+            <span class="label label-info"><%= link_to 'Edit item', edit_product_path(@product), :style => "color:white" %></span>
+            <span class="label label-danger"><%= link_to 'Delete item', @product, method: :delete, data: {confirm: 'Are you sure?'}, :style => "color:white" %></span>
+            <span><%= image_tag("http://g-ecx.images-amazon.com/images/G/01/gno/images/general/navAmazonLogoFooter._V169459313_.gif", :width => "70") %></span>
+          </li>
+        </ul>
+      </p>
+    </div>
+  </div>
 </div>
