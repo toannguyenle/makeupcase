@@ -21,26 +21,113 @@ $maincolor: rgba(255, 255, 0,0.5);
 $mainfont: 'Lato', sans-serif;
 $basewidth: 600px;
 
+// NAV BAR CUSTOM START
+$bgDefault      : #CB99C9;
+$bgHighlight    : #CB99C9;
+$colDefault     : #ecf0f1;
+$colHover       : black;
+$colHighlight   : #ffbbbc;
+.navbar-default {
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus { 
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus, {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
+// NAV BAR CUSTOM END
+
+
 body  {
-  background-image: url(makeupcase.png);
+  padding-top: 90px;
+  background-image: url(3.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;
 }
+// STRIPES
+.introstripe {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: rgb(251,194,70);
+}
+.problemstripe {
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  color: black;
+}
+.solutionstrip {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: rgb(251,194,70);
+}
+
+span.glyphicon.glyphicon-ok-sign {
+  font-size: 1.2em;
+}
+span.glyphicon.glyphicon-search {
+  font-size: 1.5em; 
+}
+li#front_page_avatar {
+  margin: 0;
+}
+.thumbnail {
+  display: inline;
+  margin: 5px 0 0 0;
+}
+
 #navbar {
     border-width: 0px;
     box-shadow: 0px 0px;
-    margin: 0 0 70px 0;
     // background-color: rgba(255,255,255,0);
 }
 #signin {
-  background-color: rgba(255,255,255,1);
+  background-color: rgba(255,255,255,0.7);
   border-radius: 3px;
   padding: 20px;
-}
-span.glyphicon {
-    font-size: 2em;
 }
 .table tbody>tr>td.vert-align{
     vertical-align: middle;
@@ -50,5 +137,5 @@ span.glyphicon {
   margin: 0 auto 20px auto;
 }
 #front_page_avatar{
-  margin: 5px auto;
+  margin: 5px auto 0 auto;
 }

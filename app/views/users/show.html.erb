@@ -11,58 +11,8 @@
         <% end %>
       <% end %>
     </div>
-    <% if current_user && (current_user.id == @user.id) %>
-    <!-- USER ONLY VIEW -->
-      <table class="table table-hover">
-        <tr>
-          <td>Name</td>
-          <th><%= @user.name%>
-            <% if @user.is_celebrity %>
-              <small><span style="color:rgb(51,204,255)" class="glyphicon glyphicon-ok-sign"></span></small>
-            <% end %>
-          </th>
-        </tr>
-        <tr>
-          <td>Email</td>
-          <td><%= @user.email%></td>
-        </tr>
-        <tr>
-          <td>Start organize since</td>
-          <td><%= @user.member_since%></td>
-        </tr>
-        <tr>
-          <td>About me</td>
-          <td><%= @user.about_me %></td>
-        </tr>
-        <tr>
-          <td>Email subscription</td>
-          <% if @agree_marketing %>
-            <td>Yes</td>
-          <% else %>
-            <td>No</td>
-          <% end %>
-        </tr>
-        <tr>
-          <td>Privacy Settings</td>
-          <% if @user.is_public %>
-            <td>Public</td>
-          <% else %>
-            <td>Private</td>
-          <% end %>
-        </tr>
-        <tr class="active">
-          <td class="text-right">
-            <%= link_to 'Back', products_path%>
-            <%= link_to 'Edit', edit_user_path(@user)%>
-          </td>
-          <td class="text-left"><%= link_to 'Delete Account', @user, method: :delete, data: {confirm: 'Are you sure? All your content will be lost and you will have to start all over again.'} %>
-          </td>
-        </tr>
-      </table>
 
-    <% else %>
       <!-- PUBLIC VIEW -->
-
       <div class="caption">
         <h4>
           <strong><%= @user.name %></strong>
@@ -77,6 +27,46 @@
         <p>
           <%= @user.about_me %>
         </p>
+      <!-- USER ONLY VIEW -->
+          <% if current_user && (current_user.id == @user.id) %>
+            <table class="table table-hover">
+              <tr>
+                <td>Email</td>
+                <td><%= @user.email%></td>
+              </tr>
+              <tr>
+                <td>Start organize since</td>
+                <td><%= @user.member_since%></td>
+              </tr>
+              <tr>
+                <td>Email subscription</td>
+                <% if @agree_marketing %>
+                  <td>Yes</td>
+                <% else %>
+                  <td>No</td>
+                <% end %>
+              </tr>
+              <tr>
+                <td>Privacy Settings</td>
+                <% if @user.is_public %>
+                  <td>Public</td>
+                <% else %>
+                  <td>Private</td>
+                <% end %>
+              </tr>
+              <tr class="active">
+                <td class="text-right">
+                  <span class="label label-info"><%= link_to 'Back to my beauty case', products_path%></span>
+                  <span class="label label-warning"><%= link_to 'Edit my account', edit_user_path(@user)%></span>
+                </td>
+                <td class="text-left">
+                  <span class="label label-danger"><%= link_to 'Delete Account', @user, method: :delete, data: {confirm: 'Are you sure? All your content will be lost and you will have to start all over again.'} %></span>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+          <!-- END USER PRIVATE VIEW -->
+        <strong><%= @user.name %> beauty case:</strong>
         <p>
           <% if @user.products %>
             <ul class="list-group">
@@ -90,8 +80,13 @@
                       <div class="media-body">
                         <h5 class="media-heading"><strong><%= p.product_name %></strong></h5>
                           by <%= p.brand %><br>
-                          $<%= p.avg_price %>
+                          $<%= p.avg_price %><br>
                           <span class="label label-default"><%= p.category %></span>
+                          <% if current_user && (current_user.id == @user.id) %>
+                            <span class="label label-info"><%= link_to 'Info',product_path(p) %></span>
+                            <span class="label label-warning"><%= link_to 'Edit',edit_product_path(p) %></span>
+                            <span class="label label-danger"><%= link_to 'Remove', p, method: :delete, data: {confirm: 'Are you sure?'}  %></span>
+                          <% end %>
                           <%= image_tag("http://g-ecx.images-amazon.com/images/G/01/gno/images/general/navAmazonLogoFooter._V169459313_.gif", :width => "70") %>
                       </div>
                     </div>
@@ -102,6 +97,6 @@
           <% end %>
         </p>
       </div>
-    <% end %>
+
   </div>
 </div>
