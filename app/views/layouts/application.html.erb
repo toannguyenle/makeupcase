@@ -11,9 +11,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<nav id="navbar" class="navbar navbar-default" role="navigation">
+<nav id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -26,16 +27,23 @@
       <a class="navbar-brand" href="/">
         <%= image_tag("logo.png", :height => "50") %>
       </a>
-      <a class="navbar-brand" href="/">my<strong>beauty</strong>case</a>
-      <p class="navbar-text" style="color: white"><span class="glyphicon glyphicon-search"></span><strong>discover</strong></p>
-      <p class="navbar-text" style="color: white"><span class="glyphicon glyphicon-gift"></span><strong>shop</strong></p>
-      <p class="navbar-text" style="color: white"><span class="glyphicon glyphicon-time"></span><strong>reminder</strong></p>
+      <a class="navbar-brand" href="/">
+        my<strong>beauty</strong>case
+      </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+          <p class="navbar-text" style="color: white"><span class="glyphicon glyphicon-search"></span><strong>discover</strong></p>
+        </li>
+        <li>
+          <p class="navbar-text" style="color: white"><span class="glyphicon glyphicon-gift"></span><strong>shop</strong></p>
+        </li>
+        <li>
+          <p class="navbar-text" style="color: white"><span class="glyphicon glyphicon-time"></span><strong>reminder</strong></p>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="navbar-form navbar-left"><%= render './product_search/search' %></li>
