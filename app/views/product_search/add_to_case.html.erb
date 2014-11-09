@@ -37,10 +37,12 @@
                 <% params[:image_urls].push(i) %>
               <% end %>
             <% end %>
-
+            <!-- ASSIGN AMAZON LINK IF LINK TO IS AVAI. -->
+            <% if @amazon %>
+              <%= f.hidden_field :amazon_link, :value => @amazon['url']  %>
+              <%= f.hidden_field :amazon_ASIN, :value => @amazon['namespace_id']  %>
+            <% end %>
             <%= f.hidden_field :image_urls, :value => params[:image_urls] %>
-            <%= f.hidden_field :amazon_link, :value => params[:select_product]['amazon_link']  %>
-            <%= f.hidden_field :amazon_ASIN, :value => params[:select_product]['amazon_ASIN']  %>
             <%= f.submit 'Add to my case!', :class => 'btn btn-primary btn-lg btn-block' %>
           </div>
         <% end %>

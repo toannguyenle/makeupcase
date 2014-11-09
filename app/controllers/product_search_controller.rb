@@ -14,8 +14,8 @@ class ProductSearchController < ApplicationController
     # CROSS WALK LOOKUP API CALL FOR EACH PRODUCTS FOR LINKS TO AMAZON
     # AND ONLINE MERCHANDISERS
     # Now it's time to make another API CALL
-    #@product_crosswalk = factual.table("products-crosswalk").search(@select_product['factual_id']).rows
-    #@amazon = @product_crosswalk.find { |cw| cw['namespace'] == 'amazon' }
+    @product_crosswalk = factual.table("products-crosswalk").search(@select_product['factual_id']).rows
+    @amazon = @product_crosswalk.find { |cw| cw['namespace'] == 'amazon' }
   end
 
   def create
