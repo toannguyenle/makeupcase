@@ -1,11 +1,10 @@
-<div class="row">
-  <div class="col-sm-10 col-sm-offset-1 text-center">
-
-    <div class="panel panel-default">
+<div class="row-fluid">
+  <div class="span10 text-center">
       <% @users.each do |u| %>
       <!-- ONLY DISPLAY PUBLIC USER -->
       <% if u.is_public %>
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-6 col-md-3">
+          <div class="innerdiv">
             <% if u.photos && u.photos.last %>
               <%= link_to(image_tag(u.photos.last.image.url(:thumbnail), :class => "thumbnail img-circle"), user_path(u)) %>
             <% else %>
@@ -23,7 +22,7 @@
             </p>
             <p>
               <% if u.products %>
-                <% u.products.each do |p| %>
+                <% u.products.take(3).each do |p| %>
                   <% if eval(p.image_urls) %>
                     <%= link_to(image_tag(eval(p.image_urls).first, :class => "img-rounded", :width => "70"), product_path(p)) %>
                   <% end %>
@@ -41,10 +40,10 @@
                 </div>
               </div>
             </p>
+            </div>
           </div>
       <% end %>
     <% end %>
-    </div>
 
   </div>
 </div>
