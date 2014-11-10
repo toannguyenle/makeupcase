@@ -61,6 +61,6 @@ class ProductsController < ApplicationController
       end
     end
     def products_params
-      params.require(:product).permit(:amazon_ASIN, :factual_id, :amazon_link, :brand, :product_name, :size, :upc, :ean13, :upc_e, :category, :avg_price, :manufacturer, :ingredients, :short_description, :full_description, :image_urls, :date_first_use, :date_expired, :like_or_not, :review, :user_id)
+      params.require(:product).permit(:rating, :amazon_ASIN, :factual_id, :amazon_link, :brand, :product_name, :size, :upc, :ean13, :upc_e, :category, :avg_price, :manufacturer, :ingredients, :short_description, :full_description, :image_urls, :date_first_use, :date_expired, :like_or_not, :review, :user_id)
     end
 end

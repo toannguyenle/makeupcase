@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-sm-4 col-sm-offset-4">
+  <div class="col-md-4 col-md-offset-4">
     <h1>Add product</h1>
   </div>
 </div>
 
 <div class="row">
-  <div id="signin" class="col-sm-4 col-sm-offset-3">
+  <div id="signin" class="col-md-4 col-md-offset-4">
     <!-- form for -->
         <%= bootstrap_form_for @select_product do |f|%>
           <div class="form-group">
@@ -20,6 +20,7 @@
             <%= f.text_field :avg_price, :value => params[:select_product]['avg_price']%>
             <%= f.date_field :date_first_use, :value =>Date.today%>
             <%= f.date_field :date_expired, :value =>Date.today+1.year%>
+            <%= f.select :rating, [1,2,3,4,5], :include_blank => true %>
             <%= f.check_box :like_or_not, label: 'Like?'%>
             <%= f.text_area :review%>
 
@@ -48,8 +49,8 @@
         <% end %>
     <!-- form for end -->
   </div>
-<%#= raise params[:select_product]['image_urls'].inspect %>
-  <div class="col-sm-3">
+
+  <div class="col-md-1">
     <% if params[:select_product]['image_urls'] %>
       <% params[:select_product]['image_urls'].each do |image| %>
         <%= image_tag(image, :class => "img-rounded", :width => "100") %>

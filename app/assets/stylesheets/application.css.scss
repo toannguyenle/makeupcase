@@ -17,6 +17,11 @@
 @import 'bootstrap';
 //Font from google Font
 @import url(http://fonts.googleapis.com/css?family=Lato);
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('glyphicons-halflings-regular.eot');
+    src: url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
 $maincolor: rgba(255, 255, 0,0.5);
 $mainfont: 'Lato', sans-serif;
 $basewidth: 600px;
@@ -25,7 +30,7 @@ $basewidth: 600px;
 $bgDefault      : #CB99C9;
 $bgHighlight    : #CB99C9;
 $colDefault     : #ecf0f1;
-$colHover       : black;
+$colHover       : #CB99C9;
 $colHighlight   : #ffbbbc;
 .navbar-default {
   background-color: $bgDefault;
@@ -125,6 +130,9 @@ span.glyphicon.glyphicon-ok-sign {
 }
 span.glyphicon.glyphicon-search {
   font-size: 1.5em; 
+}
+span.glyphicon.glyphicon-cog {
+  font-size: 2em; 
 }
 li#front_page_avatar {
   margin: 0;

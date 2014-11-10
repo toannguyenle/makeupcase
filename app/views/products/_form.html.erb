@@ -1,5 +1,5 @@
 <div class="row">
-  <div id="signin" class="col-sm-6 col-sm-offset-3">
+  <div id="signin" class="col-sm-4 col-sm-offset-4">
     <%= bootstrap_form_for(@product) do |f| %>
       <%= f.text_field :brand%>
       <%= f.text_field :product_name%>
@@ -14,8 +14,9 @@
       <%= f.text_field :short_description%>
       <%= f.text_field :full_description%>
       <%= f.text_field :image_urls%>
-      <%= f.date_field :date_first_use%>
-      <%= f.date_field :date_expired%>
+      <%= f.date_field :date_first_use, :value =>Date.today%>
+      <%= f.date_field :date_expired, :value =>Date.today + 1.year%>
+      <%= f.select :rating, [1,2,3,4,5], :include_blank => true %>
       <%= f.check_box :like_or_not, label: 'Like?'%>
       <%= f.text_area :review%>
 

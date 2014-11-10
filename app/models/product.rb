@@ -17,6 +17,7 @@ class Product
   field :date_first_use, type: Date
   field :date_expired, type: Date
   field :like_or_not, type: Mongoid::Boolean
+  field :rating, type: Integer
   field :review, type: String
   field :amazon_link, type: String
   field :amazon_ASIN, type: String
