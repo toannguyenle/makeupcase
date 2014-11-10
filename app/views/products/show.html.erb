@@ -23,6 +23,7 @@
       <li class="list-group-item"> <strong> Review </strong> <%= @product.review %></li>
       <li class="list-group-item"> <strong> Category </strong> <%= @product.category %></li>
       <li class="list-group-item"> <strong> Price </strong> <%= @product.avg_price %></li>
+      <li class="list-group-item"> <strong> Rating </strong> <%= @product.rating %></li>
       <% if current_user %>
         <% if @product.user.id == current_user.id %>
           <li class="list-group-item"> <strong> Opened on </strong> <%= @product.date_first_use %></li>

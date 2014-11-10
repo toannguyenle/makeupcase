@@ -40,12 +40,18 @@ class ProductsController < ApplicationController
     else
       render 'edit'
     end
-    # FIXING IMAGE PROBLEM _ NOT RESOLVED
-    # if @products.image_urls
-    #   @product.image_urls.each_with_index do |i,index|
-    #     @product.image_urls[index] = i
-    #   end
-    # end
+  end
+  # SET LIKE AND UNLIKE
+  def set_like
+    @product = Product.find(params[:id])
+    if @product.like_or_not
+      @product.like_or_not = false
+    else
+      @product.like_or_not = true
+    end
+    @product.save!
+    
+    redirect_to products_path
   end
 
   def destroy

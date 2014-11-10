@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get 'products/:id' => 'products#show', as: :product
   post 'products/' => 'products#create', as: :add_product
   get 'products/:id/edit' => 'products#edit', as: :edit_product
+  post 'products/:id/' => 'products#set_like', as: :like_product
   patch 'products/:id' => 'products#update'
   delete 'products/:id' => 'products#destroy'
 
