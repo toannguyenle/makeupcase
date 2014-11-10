@@ -28,7 +28,6 @@
         <% if @product.user.id == current_user.id %>
           <li class="list-group-item"> <strong> Opened on </strong> <%= @product.date_first_use %></li>
           <li class="list-group-item"> <strong> Expired on </strong> <%= @product.date_expired %></li>
-          <li class="list-group-item"><%= @product.date_expired %></li>
           <li class="list-group-item text-center">
             <span class="label label-warning">belongs to <%= link_to(@product.user.name, user_path(@product.user)) if @product.user %></span>
             <span class="label label-info"><%= link_to 'Edit item', edit_product_path(@product), :style => "color:white" %></span>
