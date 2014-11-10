@@ -2,7 +2,13 @@
 <section id="introduction">
   <div class="introstripe" >
     <div class="jumbotron vertical-center">
-      <h1>Hello, beauty!</h1><br>
+      <h1>Hello, 
+        <% if current_user %>
+          <%= current_user.name %>
+        <% else %>
+          beauty
+        <% end %>
+        !</h1><br>
       <h3>
         It's time to organize that closet of yours and get some new stuff
       </h3>
@@ -14,9 +20,9 @@
 <section id="problem">
   <div class="problemstripe">
     <div class="jumbotron vertical-center" style="background-color:transparent !important">
-      <h1>we buy way too much of the same stuff</h1><br/>
+      <h1>we buy way too many unnecessary things</h1><br/>
       <p>
-        and every year, we ended up buying the same stuff all over again.
+        ineffective. money wasted. can't keep track of expired things.
       </p><br>
       <a href="#solution" class="btn btn-primary btn-lg">So how can we help, you ask?</a>
     </div>
@@ -27,8 +33,8 @@
   <div class="solutionstripe">
     <div class="jumbotron vertical-center" style="background-color:transparent !important">
       <h1>mybeautycase do the "keep tracking" for you</h1><br>
-      <p>so you will have all the time to "keep up" with your life.</p><br>
-      <p><%= button_to 'Start exploring', users_path,:method => 'get', :class => "btn btn-primary btn-lg" %></p>
+      <p>so you will have all the time to "make up" for your life.</p><br>
+      <p><%= button_to 'Start organizing', users_path,:method => 'get', :class => "btn btn-primary btn-lg" %></p>
     </div>
   </div>
 </section>
