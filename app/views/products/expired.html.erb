@@ -1,19 +1,20 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1 text-center">
-    <% if @products.count !=0 %>
+    <%= raise @my_exp_items.inspect %>
+    <% if @my_exp_items.count !=0 %>
       
       <!-- COMMAND CENTER -->
       <div class="col-sm-6 col-md-3">
         <h1 style="color:white"><%= current_user.name %>'s beauty case </h1>
       <!-- DISPLAY TOTAL ITEM -->
-        <%=link_to products_path do%>
+        <%=link_to expired_product_path do%>
           <button class="btn btn-primary" type="button">
             my items
             <span class="badge progress-bar-success"><%= @my_item_count %></span>
           </button>
         <% end %>
         <!-- DISPLAY EXPIRED PRODUCT IF ANY -->
-        <% if @my_exp_items %>
+        <% if @my_exp_items  %>
           <%=link_to expired_products_path do%>
             <button class="btn btn-primary" type="button">
               alert
@@ -23,7 +24,7 @@
         <% end %>
       </div>
         <!-- DISPLAY ALL USER PRODUCTS -->
-        <% @products.each do |p| %>
+        <% @my_exp_items.each do |p| %>
           <div class="col-sm-6 col-md-3">
             <div class="innerdiv">
               <% if eval(p.image_urls) %>
@@ -98,7 +99,7 @@
     <% else %>
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
-          <button type="button" class="btn btn-primary btn-lg btn-block">Your case is empty. Search to add new products or add your own.</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block">Woohoo. Everything is in order.</button>
           <%= render './product_search/search'%>
         </div>
       </div>

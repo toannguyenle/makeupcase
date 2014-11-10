@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
   before_action :make_sure_logged_in, only: [:index, :create, :edit, :update, :new, :destroy]
   def index
     @products = Product.where('user_id' => current_user.id.to_s)
+    @my_item_count = @products.count
+    @my_exp_items = @products.where(:date_expired => { :$lte => Date.today } )
   end
 
   def show
@@ -15,13 +17,6 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(products_params)
     @product.user_id = current_user.id.to_s
-    # IMAGE ISSUE WITH ADDING OBJECT INTO DATABASE NOT FIXED.
-    # if params[:product]['image_urls']
-    #   params[:product]['image_urls'].each_with_index do |i,index|
-    #     @product.image_urls[index] = i
-    #   end
-    # end
-
     if @product.save
       redirect_to products_path
     else

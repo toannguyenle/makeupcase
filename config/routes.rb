@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   # PRODUCT ROUTES
   get 'products/' => 'products#index'
+  get 'products/expired' => 'products#index', as: :expired_products
   get 'products/new' => 'products#new', as: :new_product
   get 'products/:id' => 'products#show', as: :product
   post 'products/' => 'products#create', as: :add_product

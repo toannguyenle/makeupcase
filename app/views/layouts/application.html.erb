@@ -47,14 +47,27 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span></a>
             <ul class="dropdown-menu" role="menu">
+              <li>
+                <%=link_to products_path do%>
+                  My stuff
+                  <span class="badge progress-bar-success"><%= @my_item_count %></span>
+                <% end %>
+              </li>
+              <li class="divider"></li>
+              <% if @my_exp_items %>
+                <li>
+                  <%=link_to products_path do%>
+                    Alert
+                    <span class="badge progress-bar-warning"><%= @my_exp_items.count %></span>
+                  <% end %>
+                </li>
+              <% end %>
               <li><%=link_to 'Sign out', sessions_path, method: :delete%></li>
-              <li><%=link_to 'Add product', new_product_path%></li>
-              <li><%=link_to 'Show product', products_path%></li>
+              <li class="divider"></li>
               <li><%=link_to 'Show users', users_path%></li>
               <li class="divider"></li>
               <li><%= link_to 'Profile', user_path(current_user) %></li>
-              <li><a href="#">Help</a></li>
-              <li><%=link_to 'Delete account', user_path(current_user), {method: :delete, confirm: "Are you really really really sure?"} %></li>
+              <li><%=link_to 'Add product', new_product_path%></li>
             </ul>
           </li>
         <% else %>
