@@ -2,48 +2,49 @@
   <div class="col-md-10 col-md-offset-1 text-center">
       <% @users.each do |u| %>
       <!-- ONLY DISPLAY PUBLIC USER -->
-      <% if u.is_public %>
-        <div class="col-sm-6 col-md-3">
-          <div class="innerdiv">
-            <% if u.photos && u.photos.last %>
-              <%= link_to(image_tag(u.photos.last.image.url(:thumbnail), :class => "thumbnail img-circle"), user_path(u)) %>
-            <% else %>
-              <%= link_to(image_tag("http://s3.amazonaws.com/mybeautycase-assets/photos/images/545d/cb54/6433/3600/0203/0000/thumbnail/icon.jpg?1415433043", :class => "img-circle thumbnail"), user_path(u)) %>
-            <% end %>
-            <h5>
-              <strong><%= u.name %></strong>
-              <% if u.is_celebrity %>
-                <small><span style="color:rgb(51,204,255)" class="glyphicon glyphicon-ok-sign"></span></small>
+        <% if u.is_public %>
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div class="innerdiv">
+              <% if u.photos && u.photos.last %>
+                <%= link_to(image_tag(u.photos.last.image.url(:thumbnail), :class => "thumbnail img-circle"), user_path(u)) %>
+              <% else %>
+                <%= link_to(image_tag("http://s3.amazonaws.com/mybeautycase-assets/photos/images/545d/cb54/6433/3600/0203/0000/thumbnail/icon.jpg?1415433043", :class => "img-circle thumbnail"), user_path(u)) %>
               <% end %>
-            </h5>
-            <h5><small>@<%= u.username %></small></h5>
-            <p>
-              <%= u.about_me %>
-            </p>
-            <p>
-              <% if u.products %>
-                <% u.products.take(3).each do |p| %>
-                  <% if eval(p.image_urls) %>
-                    <%= link_to(image_tag(eval(p.image_urls).first, :class => "img-rounded", :width => "70"), product_path(p)) %>
+              <h5>
+                <strong><%= u.name %></strong>
+                <% if u.is_celebrity %>
+                  <small><span style="color:rgb(51,204,255)" class="glyphicon glyphicon-ok-sign"></span></small>
+                <% end %>
+              </h5>
+              <h5>
+                <small>@<%= u.username %></small>
+              </h5>
+              <p>
+                <%= u.about_me %>
+              </p>
+              <p>
+                <% if u.products %>
+                  <% u.products.take(3).each do |p| %>
+                    <% if eval(p.image_urls) %>
+                      <%= link_to(image_tag(eval(p.image_urls).first, :class => "img-rounded", :width => "70"), product_path(p)) %>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
-            </p>
-            <p>
-              <div class=".btn-group.btn-group-justified">
-                <button type="button" class="btn btn-info">Follow</button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    <span class="sr-only"><span class="glyphicon glyphicon-cog"></span></span>
-                  </button>
+              </p>
+              <p>
+                <div class=".btn-group.btn-group-justified">
+                  <button type="button" class="btn btn-info">Follow</button>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                      <span class="caret"></span>
+                      <span class="sr-only"><span class="glyphicon glyphicon-cog"></span></span>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </p>
+              </p>
             </div>
           </div>
       <% end %>
     <% end %>
-
   </div>
 </div>
