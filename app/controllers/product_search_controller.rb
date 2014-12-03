@@ -41,3 +41,9 @@ class ProductSearchController < ApplicationController
       params.require(:select_product).permit(:amazon_ASIN, :factual_id, :amazon_link, :brand, :product_name, :size, :upc, :ean13, :upc_e, :category, :avg_price, :manufacturer, :ingredients, :short_description, :full_description, :image_urls, :date_first_use, :date_expired, :like_or_not, :review, :user_id)
     end
 end
+
+
+
+
+
+

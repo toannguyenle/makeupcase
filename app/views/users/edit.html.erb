@@ -23,8 +23,8 @@
       <%= f.text_area :about_me %>
       <%= f.password_field :password, help: 'Must be at least 6 characters long' %>
       <%= f.password_field :password_confirmation %>
-      <%= f.check_box :agree_marketing, label: 'Let me know about sales relating to products in my account. Learn more.', checked: true %>
-      <%= f.check_box :is_public, label: 'Public acount', checked: true %>
+      <%= f.check_box :is_public, label: 'Make your profile public.', checked: true %>
+      <%= f.check_box :agree_marketing, label: 'Sign up for emails.', checked: true %>
       <%= f.submit 'Update my profile', :class => 'btn btn-primary btn-lg btn-block'%>
     <% end %>
   </div>
