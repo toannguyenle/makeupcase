@@ -216,7 +216,6 @@ DEPENDENCIES
   mongoid-paperclip (~> 0.0.8)
   mongoid-rspec
   newrelic_rpm
-  nokogiri (~> 1.4)
   pry-rails
   rails (= 4.1.0)
   rails_12factor

@@ -26,7 +26,7 @@ gem 'bootstrap_form'
 gem 'aws-sdk', '~> 1.3.4'
 # AWS KEY LOOKUP
 gem 'amazon-ecs'
-gem 'nokogiri', '~> 1.4'
+# gem 'nokogiri', '~> 1.4'
 gem 'ruby-hmac', '~> 0.3'
 group :dev do
   gem 'rake'
