@@ -106,6 +106,7 @@ GEM
       optionable (~> 0.2.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    newrelic_rpm (3.9.8.273)
     nokogiri (1.6.4.1)
       mini_portile (~> 0.6.0)
     oauth (0.4.7)
@@ -214,6 +215,7 @@ DEPENDENCIES
   mongoid!
   mongoid-paperclip (~> 0.0.8)
   mongoid-rspec
+  newrelic_rpm
   nokogiri (~> 1.4)
   pry-rails
   rails (= 4.1.0)
